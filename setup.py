@@ -9,4 +9,5 @@ setup(name='pushbullet_log_handler',
       author_email='m@thiaso.se, me@oyvindrobertsen.com',
       url='http://github.com/mathiasose/pushbullet_logger',
       packages=['pushbullet_log_handler'],
+      install_requires=['pushbullet.py>=0.5.0'],
       )
