@@ -1,5 +1,6 @@
 import logging
 import traceback
+from pushbullet import PushBullet
 
 
 class PushbulletLogHandler(logging.Handler):
@@ -7,6 +8,7 @@ class PushbulletLogHandler(logging.Handler):
         logging.Handler.__init__(self)
         self.api_key = api_key
         self.stack_trace = stack_trace
+        self.pb_session = PushBullet(self.api_key)
 
     def emit(self, record):
         message = '{}'.format(record.getMessage())
@@ -15,5 +17,4 @@ class PushbulletLogHandler(logging.Handler):
             message += '\n'
             message += '\n'.join(traceback.format_exception(*record.exc_info))
 
-
-        # todo: push
+        _, _ = self.pb_session.push_note(message)
